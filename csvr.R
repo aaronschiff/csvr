@@ -32,8 +32,17 @@ count_categorical = function(d, plot_results = TRUE, max_plot_results = 25) {
         # Plot bar chart using ggplot
         bar_chart = ggplot(rdf, aes(x = value, y = count)) +
                     geom_bar(stat = "identity") +
-                    coord_flip() +
-                    ggtitle(r$variable_name)
+                    coord_flip() + 
+                    ggtitle(r$variable_name) + 
+                    theme(
+                      axis.line = element_blank(), 
+                      axis.ticks.x = element_blank(), 
+                      axis.ticks.y = element_blank(), 
+                      axis.title.x = element_blank(), 
+                      axis.title.y = element_blank(), 
+                      panel.background = element_blank(), 
+                      panel.grid.major.x = element_line(colour = "#eeeeee")
+                    )
         print(bar_chart)
       }
     }
@@ -44,7 +53,7 @@ count_categorical = function(d, plot_results = TRUE, max_plot_results = 25) {
 
 
 # Main analysis function
-csvr = function(csv_file, plot_results = TRUE, ...) {
+csvr = function(csv_file, plot_results = TRUE, max_plot_results = 25, ...) {
   # Setup
   library(dplyr)
   library(ggplot2)
@@ -54,7 +63,7 @@ csvr = function(csv_file, plot_results = TRUE, ...) {
     csv_data = read.csv(csv_file, stringsAsFactors = FALSE, ...)
     
     if (nrow(csv_data) > 0) {
-      counts = count_categorical(csv_data, plot_results)
+      counts = count_categorical(csv_data, plot_results, max_plot_results)
       
       return(counts)
     }
