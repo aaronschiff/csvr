@@ -8,7 +8,7 @@
 # Count unique values of each categorical variable using dplyr functions
 # Optionally plot the counts on bar charts
 # Returns variable_names: a list of the categorical variable names
-#         results: lists (variable_name, values) giving the counts of values of
+#         results: lists (variable_name, (value, count)) giving the counts of values of
 #                  the categorical variables
 count_categorical = function(d, plot_results = TRUE, max_plot_results = 25, max_plot_value_length = 50) {
   # Placeholder for return values
@@ -95,4 +95,4 @@ csvr = function(csv_file, plot_results = TRUE, max_plot_results = 25, max_plot_v
 
 #------------------------------------------------------------------------------
 # Run with test data
-y = csvr("gdp.csv")
+# y = csvr("gdp.csv")
